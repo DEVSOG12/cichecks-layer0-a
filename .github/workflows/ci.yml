@@ -1,10 +1,13 @@
 name: ci
 on:
   pull_request:
-  push:
-    branches: [main]
 jobs:
-  gate:
+  scan:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "gate pass"; exit 0
+      - run: echo "scan FAIL"; exit 1
+  gate:
+    needs: scan
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "gate ran"
