@@ -2,8 +2,12 @@ name: ci
 on:
   pull_request:
 jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "scan FAIL"; exit 1
   gate:
-    if: ${{ github.actor == 'dependabot[bot]' }}
+    needs: scan
     runs-on: ubuntu-latest
     steps:
       - run: echo "gate ran"
